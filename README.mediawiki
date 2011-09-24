@@ -365,13 +365,13 @@ The complete list of JIRA issues is here: http://dev.clojure.org/jira/secure/Iss
     => NullPointerException
 </nowiki>
 * CLJ-780 race condition in reference cache on Java 5
-  * Map.Entry instances can have null values prior to Java 6. This patch provides a workaround.
+** Map.Entry instances can have null values prior to Java 6. This patch provides a workaround.
 
-  * floats were being boxed as Doubles, now they are boxed as Floats
+** floats were being boxed as Doubles, now they are boxed as Floats
 
-  * several "holding onto head" fixes
-    * Stop top-level defs from hanging onto the head of an expression that uses a lazy seq
-    * Stop multimethods from holding onto heads of their arguments
+** several "holding onto head" fixes
+*** Stop top-level defs from hanging onto the head of an expression that uses a lazy seq
+*** Stop multimethods from holding onto heads of their arguments
 
 = 5 Modular Contrib =
 
