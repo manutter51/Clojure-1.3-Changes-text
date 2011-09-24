@@ -184,10 +184,10 @@ Clojure does not throw checked exceptions
 == 2.19 vector-of Takes Multiple Args ==
 
 vector-of takes multiple args used to populate the array
-
+{{{
   (vector-of :int 1 2 3)
   => [1 2 3]
-
+}}}
 == 2.20 deref with timeout ==
 
 deref now takes a timeout option - when given with a blocking reference, will return the timeout-val if the timeout (in milliseconds) is reached before value is available.
@@ -324,9 +324,10 @@ The complete list of JIRA issues is here: http://dev.clojure.org/jira/secure/Iss
 
 * CLJ-435 stackoverflow exception in printing meta with :type
 ** Patch fixes exception being thrown on certain type metadata
+{{{
     (with-meta {:value 2} {:type Object})
     => No message. [Thrown class java.lang.StackOverflowError]
-
+}}}
 * CLJ-437 Bugs in clojure.set/subset? and superset? for sets with false/nil elements
 ** Patch fixes failing on subset? and superset? for sets with false/nil elements
 
