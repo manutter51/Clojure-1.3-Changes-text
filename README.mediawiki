@@ -46,7 +46,7 @@ Better error messages:
 * For Invalid Map Literals
 * For alias function if using unknown namespace
 * In the REPL
-* Add "starting at <line>" to EOF while reading exceptions
+* Add "starting at &lt;line&gt;" to EOF while reading exceptions
 * Better compilation error reporting
 
 
