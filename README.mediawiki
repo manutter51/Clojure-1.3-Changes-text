@@ -3,11 +3,12 @@ Changes to Clojure in Version 1.3
 = 1 Deprecated and Removed Features =
 
 == 1.1 Earmuffed Vars Are No Longer Automatically Considered Dynamic. ==
-
+ <nowiki>
   (def *fred*)
   => Warning: *fred* not declared dynamic and thus is not dynamically rebindable,
  but its name suggests otherwise. Please either indicate ^:dynamic ** or change 
  the name.
+</nowiki>
 
 == 1.2 ISeq No Longer Inherits from Sequential ==
 
@@ -60,6 +61,7 @@ Recursively compares a and b, returning a tuple of [things-only-in-a things-only
   (diff {:a 1 :b 2} {:a 1 :b 22 :c 3})
   => ({:b 2} {:c 3, :b 22} {:a 1})
 </nowiki>
+
 == 2.6 clojure.core/every-pred and clojure.core/some-fn Combinators ==
 
 every-pred takes a set of predicates and returns a function f that returns true if all of its composing predicates return a logical true value against all of its arguments, else it returns false.
@@ -70,6 +72,7 @@ every-pred takes a set of predicates and returns a function f that returns true 
   ((every-pred even?) 2 4 5)
   =>false
 </nowiki>
+
 some-fn takes a set of predicates and returns a function f that returns the first logical true value  returned by one of its composing predicates against any of its arguments, else it returns logical false.
  <nowiki>
   ((some-fn even?) 2 4 5)
@@ -77,6 +80,7 @@ some-fn takes a set of predicates and returns a function f that returns the firs
   ((some-fn odd?) 2 4 6)
   => false
 </nowiki>
+
 == 2.7 clojure.core/realized? ==
 
 Returns true if a value has been produced for a promise, delay, future or lazy sequence.
@@ -88,6 +92,7 @@ Returns true if a value has been produced for a promise, delay, future or lazy s
   => false
   => true
 </nowiki>
+
 == 2.8 clojure.core/with-redefs-fn & clojure.core/with-redefs ==
 
 with-redefs-fn temporarily redefines Vars during a call to func. with-redefs temporarily redefines Vars while executing the body.
@@ -95,6 +100,7 @@ with-redefs-fn temporarily redefines Vars during a call to func. with-redefs tem
   (with-redefs [nil? :temp] (println nil?))
   => :temp
 </nowiki>
+
 == 2.9 clojure.core/find-keyword ==
 
 Returns a Keyword with the given namespace and name if one already exists.
@@ -104,6 +110,7 @@ Returns a Keyword with the given namespace and name if one already exists.
   (find-keyword "fred")
   => nil
 </nowiki>
+
 == 2.10 clojure.repl/pst ==
 
 Prints a stack trace of the exception
@@ -124,6 +131,7 @@ Prints a stack trace of the exception
         clojure.lang.Var.applyTo (Var.java:518)
         clojure.main.main (main.java:37)
 </nowiki>
+
 == 2.11 clojure.pprint/print-table
 
 Prints a collection of maps in a textual table.
@@ -136,6 +144,7 @@ Prints a collection of maps in a textual table.
      wilma | betty
      ===============
 </nowiki>
+
 == 2.12 pprint respects *print-length* ==
 
 Assigning *print-length* now effects output of pprint
@@ -161,6 +170,7 @@ http://dev.clojure.org/display/design/How+to+Make+Releases
   (def ^:const pi (:pi constants))
   (def ^:const e (:e constants))
 </nowiki>
+
 The overhead of looking up :e and :pi in the map happens at compile time, as (:pi constants) and (:e constants) are evaluated when their parent def forms are evaluated.
 
 == 2.16 Message Bearing Assert ==
@@ -170,6 +180,7 @@ Assert can take a second argument which will be printed when the assert fails
   (assert (= 1 2) "1 is not equal to 2")
   => AssertionError Assert failed: 1 is not equal to 2
 </nowiki>
+
 == 2.17 Error Checking for defmulti Options ==
 
 defmulti will check to verify that its options are valid. For example, the following code will throw an exception:
@@ -177,6 +188,7 @@ defmulti will check to verify that its options are valid. For example, the follo
   (defmulti fred :ethel :lucy :ricky)
   => IllegalArgumentException
 </nowiki>
+
 == 2.18 Removed Checked Exceptions ==
 
 Clojure does not throw checked exceptions
@@ -195,6 +207,7 @@ deref now takes a timeout option - when given with a blocking reference, will re
   (deref (promise) 10 :ethel)
   => :ethel
 </nowiki>
+
 == 2.21 Walk Support for sorted-by Collections
 
 Walk modified to work on sorted-by collections
@@ -202,6 +215,7 @@ Walk modified to work on sorted-by collections
   let [x (sorted-set-by > 1 2 3)] (walk inc reverse x))
   => (2 3 4)
 </nowiki>
+
 == 2.22 string.join Enhanced to Work with Sets ==
 
 Just like join works on other collections
@@ -209,6 +223,7 @@ Just like join works on other collections
   (join " and " #{:fred :ethel :lucy})
   => ":lucy and :fred and :ethel"
 </nowiki>
+
 == 2.23 clojure.test-helper ==
 
 All test helpers moved into clojure.test-helper
@@ -246,6 +261,7 @@ Patch causes thread names like:
     clojure-agent-send-pool-%d  (should be fixed # of threads)
     clojure-agent-send-off-pool-%d (will be added and removed over time)
 </nowiki>
+
 == 2.31 Add docstring support to def ==
 
 defs can now have docstrings
@@ -255,6 +271,7 @@ defs can now have docstrings
   (= (comp) identity)
   => true
 </nowiki>
+
 == 2.33 Type hints can be applied to arg vectors ==
 
 You can hint different arities separately:
@@ -264,6 +281,7 @@ You can hint different arities separately:
     (^Integer [a])
     (^java.util.List [a & args]))
 </nowiki>
+
 This is preferred over hinting the function name. Hinting the function name is still allowed for backward compatibility, but will likely be deprecated in a future release.
 
 == 2.34 Binding Conveyance ==
@@ -274,6 +292,7 @@ Clojure APIs that pass work off to other threads (e.g. send, send-off, pmap, fut
   (binding [*num* 2] (future (println *num*)))
   ;; prints "2", not "1"
 </nowiki>
+
 = 3 Performance Enhancements =
 
 * Code path for using vars is now much faster for the common case
@@ -301,6 +320,7 @@ The complete list of JIRA issues is here: http://dev.clojure.org/jira/secure/Iss
     (fn [x] (try (recur 1)))
     => CompilerException
 </nowiki>
+
 * CLJ-286 *out* being used as java.io.PrintWriter
 ** Patch fixes using Writer instead of PrintWriter
 ** fix clojure.main to not assume that *err* is a PrintWriter
@@ -364,6 +384,7 @@ The complete list of JIRA issues is here: http://dev.clojure.org/jira/secure/Iss
     (cl-format nil "~:(~a~)" "")
     => NullPointerException
 </nowiki>
+
 * CLJ-780 race condition in reference cache on Java 5
   * Map.Entry instances can have null values prior to Java 6. This patch provides a workaround.
 
