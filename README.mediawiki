@@ -57,8 +57,7 @@ Full details here: http://dev.clojure.org/display/design/Reflection+API
 
 Recursively compares a and b, returning a tuple of [things-only-in-a things-only-in-b things-in-both]
  <nowiki>
-  (diff {:a 1 :b 2} {:a 1 :b 22 :c 3})
-
+  (diff {:a 1 :b 2} {:a 1 :b 22 :c 3})<br/>
   => ({:b 2} {:c 3, :b 22} {:a 1})
  </nowiki>
 == 2.6 clojure.core/every-pred and clojure.core/some-fn Combinators ==
